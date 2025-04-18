@@ -148,7 +148,7 @@ public abstract class ChestSearchMixin extends Screen {
                 }
             }
 
-            int color = (matchesName || matchesLore) ? 0xAA00FF00 : 0xAAFF0000;
+            int color = (matchesName || matchesLore) ? EnchantingGoBrrrrClient.COLOR_MATCH : EnchantingGoBrrrrClient.COLOR_NO_MATCH;
             context.fillGradient(slot.x, slot.y, slot.x + 16, slot.y + 16, color, color);
             return;
         }
@@ -173,7 +173,7 @@ public abstract class ChestSearchMixin extends Screen {
                 if (tooltip.getFirst() == loreLine) continue;
                 if (loreLine.toString().contains("Susanoo")) continue;
                 if (containsColor(loreLine, Formatting.LIGHT_PURPLE)) {
-                    context.fillGradient(slot.x, slot.y, slot.x + 16, slot.y + 16, 0xAAF551F5, 0xAAF551F5);
+                    context.fillGradient(slot.x, slot.y, slot.x + 16, slot.y + 16, EnchantingGoBrrrrClient.PINK_COLOR, EnchantingGoBrrrrClient.PINK_COLOR);
                     break;
                 }
             }
@@ -184,7 +184,7 @@ public abstract class ChestSearchMixin extends Screen {
                 if (tooltip.getFirst() == loreLine) continue;
                 if (loreLine.toString().contains("Shinigami")) continue;
                 if (containsColor(loreLine, Formatting.DARK_RED)) {
-                    context.fillGradient(slot.x, slot.y, slot.x + 16, slot.y + 16, 0xAAF21313, 0xAAF21313);
+                    context.fillGradient(slot.x, slot.y, slot.x + 16, slot.y + 16, EnchantingGoBrrrrClient.RED_COLOR, EnchantingGoBrrrrClient.RED_COLOR);
                     break;
                 }
             }
