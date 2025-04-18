@@ -4,7 +4,9 @@
   "version": "${version}",
   "name": "EnchantingGoBrrrr",
   "description": "",
-  "authors": [],
+  "authors": [
+    "yyuh"
+  ],
   "contact": {},
   "license": "All-Rights-Reserved",
   "icon": "assets/icon.png",
