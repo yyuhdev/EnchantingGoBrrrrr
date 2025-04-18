@@ -3,13 +3,13 @@
   "id": "enchantinggobrrrr",
   "version": "${version}",
   "name": "EnchantingGoBrrrr",
-  "description": "",
+  "description": "Minecraft Utility Mod that allows you to search for items in chests & other UIs. ",
   "authors": [
     "yyuh"
   ],
   "contact": {},
   "license": "All-Rights-Reserved",
-  "icon": "assets/icon.png",
+  "icon": "assets/enchantinggobrrrr/icon.png",
   "environment": "client",
   "entrypoints": {
     "client": [

@@ -37,8 +37,8 @@ Change the following highlight colors in the settings UI:
 
 ## 📸 Screenshots
 
-> ![Screenshot](src/main/resources/assets/screenshot1.png)
+> ![Screenshot](src/main/resources/assets/screenshots/screenshot1.png)
 
-> ![Screenshot](src/main/resources/assets/screenshot2.png)
+> ![Screenshot](src/main/resources/assets/screenshots/screenshot2.png)
 
-> ![Screenshot](src/main/resources/assets/screenshot3.png)
+> ![Screenshot](src/main/resources/assets/screenshots/screenshot3.png)
