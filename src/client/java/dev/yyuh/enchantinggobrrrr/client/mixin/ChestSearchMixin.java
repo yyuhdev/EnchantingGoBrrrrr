@@ -37,6 +37,7 @@ public abstract class ChestSearchMixin extends Screen {
     static {
         modules.put("Highlighting Red Enchantments: <bool>", false);
         modules.put("Highlighting Pink Enchantments: <bool>", false);
+        modules.put("Highlighting Godlike Enchantments: <bool>", false);
     }
     @Unique private boolean render;
     @Unique private boolean isEmptyString;
@@ -44,6 +45,7 @@ public abstract class ChestSearchMixin extends Screen {
     @Unique private ButtonWidget resetButton;
     @Unique private static boolean highlightingRed;
     @Unique private static boolean highlightingPink;
+    @Unique private static boolean highlightingGodlike;
     @Unique private static String lastSearchQuery = "";
 
     @Inject(at = @At("RETURN"), method = "init()V")
@@ -79,6 +81,15 @@ public abstract class ChestSearchMixin extends Screen {
             lastSearchQuery = "";
         }).dimensions(SEARCH_BOX_WIDTH + 8, this.height - 24, 36, 20).build();
 
+        ButtonWidget highlightGodlike = ButtonWidget.builder(Text.literal("Godlike Enchants"), button -> {
+            if (!highlightingGodlike) {
+                highlightingGodlike = true;
+                modules.put("Highlighting Godlike Enchantments: <bool>", true);
+                return;
+            }
+            highlightingGodlike = false;
+            modules.put("Highlighting Godlike Enchantments: <bool>", false);
+        }).dimensions(4, this.height - 106, 85, 20).build();
         ButtonWidget highlightRed = ButtonWidget.builder(Text.literal("Red Enchants"), button -> {
             if (!highlightingRed) {
                 highlightingRed = true;
@@ -100,6 +111,7 @@ public abstract class ChestSearchMixin extends Screen {
 
         this.addDrawableChild(resetButton);
         this.addDrawableChild(highlightRed);
+        this.addDrawableChild(highlightGodlike);
         this.addDrawableChild(highlightPink);
     }
 
@@ -141,6 +153,21 @@ public abstract class ChestSearchMixin extends Screen {
             return;
         }
 
+        if (highlightingGodlike) {
+            for (Text loreLine : tooltip) {
+                if (tooltip.getFirst() == loreLine) continue;
+                String line = loreLine.getString().toLowerCase();
+                if (line.contains("soulbound")
+                        || line.contains("energiefeld")
+                        || line.contains("klingensturm")
+                        || line.contains("mehrfachschuss")
+                ) {
+                    context.fillGradient(slot.x, slot.y, slot.x + 16, slot.y + 16, 0xAABB0119, 0xAA5C046F);
+                    break;
+                }
+            }
+        }
+
         if (highlightingPink) {
             for (Text loreLine : tooltip) {
                 if (tooltip.getFirst() == loreLine) continue;
@@ -156,7 +183,7 @@ public abstract class ChestSearchMixin extends Screen {
             for (Text loreLine : tooltip) {
                 if (tooltip.getFirst() == loreLine) continue;
                 if (loreLine.toString().contains("Shinigami")) continue;
-                if (containsColor(loreLine, Formatting.RED)) {
+                if (containsColor(loreLine, Formatting.DARK_RED)) {
                     context.fillGradient(slot.x, slot.y, slot.x + 16, slot.y + 16, 0xAAF21313, 0xAAF21313);
                     break;
                 }
@@ -171,7 +198,7 @@ public abstract class ChestSearchMixin extends Screen {
         itemSearchBox.render(context, mouseX, mouseY, delta);
         resetButton.render(context, mouseX, mouseY, delta);
 
-        context.drawText(this.textRenderer, "Highlight Rare Enchantments: ", 4, this.height - 93, -1, true);
+        context.drawText(this.textRenderer, "Highlight Rare Enchantments: ", 4, this.height - 117, -1, true);
         context.drawText(
                 this.textRenderer,
                 "Search:",
