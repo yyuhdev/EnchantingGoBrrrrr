@@ -49,6 +49,7 @@ public abstract class ChestSearchMixin extends Screen {
     @Inject(at = @At("RETURN"), method = "init()V")
     private void addSearchBox(CallbackInfo info) {
         render = ((ChestSearchAccessor) this).getHandler() instanceof GenericContainerScreenHandler && EnchantingGoBrrrrClient.CHEST
+        || ((ChestSearchAccessor) this).getHandler() instanceof HopperScreenHandler && EnchantingGoBrrrrClient.CHEST
         || ((ChestSearchAccessor) this).getHandler() instanceof ShulkerBoxScreenHandler && EnchantingGoBrrrrClient.SHULKER
         || ((ChestSearchAccessor) this).getHandler() instanceof AnvilScreenHandler && EnchantingGoBrrrrClient.ANVIL
         || ((ChestSearchAccessor) this).getHandler() instanceof EnchantmentScreenHandler && EnchantingGoBrrrrClient.ENCHANTING_TABLE
@@ -122,7 +123,7 @@ public abstract class ChestSearchMixin extends Screen {
 
         Item.TooltipContext tooltipContext = Item.TooltipContext.create(this.client.world);
         List<Text> tooltip = itemStack.getTooltip(tooltipContext, this.client.player, TooltipType.BASIC);
-        
+
         if(!isEmptyString) {
             String searchText = itemSearchBox.getText().trim().toLowerCase();
             boolean matchesName = slot.getStack().getName().getString().toLowerCase().contains(searchText);
