@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "enchantinggobrrrr",
+  "version": "${version}",
+  "name": "EnchantingGoBrrrr",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "dev.yyuh.enchantinggobrrrr.client.EnchantingGoBrrrrClient"
+    ],
+    "main": [
+      "dev.yyuh.enchantinggobrrrr.EnchantingGoBrrrr"
+    ]
+  },
+  "mixins": [
+    "enchantinggobrrrr.mixins.json",
+    {
+      "config": "enchantinggobrrrr.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
